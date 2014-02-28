@@ -1,0 +1,14 @@
+# This file specifies the default formatting for any c sharp files in this project.
+
+# Bracket Styles
+--style=google
+indent-namespaces
+add-brackets
+
+# Tab Settings
+indent=spaces=2
+
+--lineend=linux
+
+# Other Options
+--suffix=none
