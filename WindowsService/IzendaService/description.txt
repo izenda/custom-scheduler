@@ -12,7 +12,7 @@ Installation and config csenario:
 > net stop IzendaService
 or
 stop IzendaService from Administrative Tools -> Servises
-4. Change url and interval (in miliseconds) keys in IzendaService.exe.config as needed
+4. Change parameters values in IzendaService.exe.config as needed
 5. run in the opened as admionistrator console
 > net start IzendaService
 or
