@@ -1,3 +1,3 @@
-D:\Work\CustomProjects\service_scheduler\Installer\bin\Debug\cab1.cab
-D:\Work\CustomProjects\service_scheduler\Installer\bin\Debug\IzendaService.msi
-D:\Work\CustomProjects\service_scheduler\Installer\bin\Debug\IzendaService.wixpdb
+D:\Work\Repositories\custom-scheduler\WindowsService\Installer\bin\Debug\cab1.cab
+D:\Work\Repositories\custom-scheduler\WindowsService\Installer\bin\Debug\IzendaService.msi
+D:\Work\Repositories\custom-scheduler\WindowsService\Installer\bin\Debug\IzendaService.wixpdb

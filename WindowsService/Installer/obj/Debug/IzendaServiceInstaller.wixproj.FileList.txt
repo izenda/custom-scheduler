@@ -5,3 +5,6 @@ obj\Debug\Product.wixobj
 obj\Debug\IzendaServiceInstaller.wixproj.BindContentsFileListnull.txt
 obj\Debug\IzendaServiceInstaller.wixproj.BindOutputsFileListnull.txt
 obj\Debug\IzendaServiceInstaller.wixproj.BindBuiltOutputsFileListnull.txt
+D:\Work\Repositories\custom-scheduler\WindowsService\Installer\bin\Debug\cab1.cab
+D:\Work\Repositories\custom-scheduler\WindowsService\Installer\bin\Debug\IzendaService.msi
+D:\Work\Repositories\custom-scheduler\WindowsService\Installer\bin\Debug\IzendaService.wixpdb

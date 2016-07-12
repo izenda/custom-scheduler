@@ -16,3 +16,13 @@ D:\Work\CustomProjects\service_scheduler\IzendaService\obj\Debug\IzendaService.c
 D:\Work\CustomProjects\service_scheduler\IzendaService\obj\Debug\IzendaService.exe
 D:\Work\CustomProjects\service_scheduler\IzendaService\obj\Debug\IzendaService.pdb
 D:\Work\CustomProjects\service_scheduler\IzendaService\obj\Debug\IzendaService.CustomWebClient.resources
+D:\Work\Repositories\custom-scheduler\WindowsService\IzendaService\bin\Debug\IzendaService.exe.config
+D:\Work\Repositories\custom-scheduler\WindowsService\IzendaService\obj\Debug\IzendaService.exe
+D:\Work\Repositories\custom-scheduler\WindowsService\IzendaService\obj\Debug\IzendaService.pdb
+D:\Work\Repositories\custom-scheduler\WindowsService\IzendaService\bin\Debug\install.bat
+D:\Work\Repositories\custom-scheduler\WindowsService\IzendaService\bin\Debug\IzendaService.exe
+D:\Work\Repositories\custom-scheduler\WindowsService\IzendaService\bin\Debug\IzendaService.pdb
+D:\Work\Repositories\custom-scheduler\WindowsService\IzendaService\obj\Debug\IzendaService.csprojResolveAssemblyReference.cache
+D:\Work\Repositories\custom-scheduler\WindowsService\IzendaService\obj\Debug\IzendaService.CustomWebClient.resources
+D:\Work\Repositories\custom-scheduler\WindowsService\IzendaService\obj\Debug\IzendaService.ProjectInstaller.resources
+D:\Work\Repositories\custom-scheduler\WindowsService\IzendaService\obj\Debug\IzendaService.csproj.GenerateResource.Cache
