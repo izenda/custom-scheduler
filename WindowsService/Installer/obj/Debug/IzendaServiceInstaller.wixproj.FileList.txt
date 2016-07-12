@@ -1,0 +1,7 @@
+D:\Work\CustomProjects\service_scheduler\Installer\bin\Debug\cab1.cab
+D:\Work\CustomProjects\service_scheduler\Installer\bin\Debug\IzendaService.msi
+D:\Work\CustomProjects\service_scheduler\Installer\bin\Debug\IzendaService.wixpdb
+obj\Debug\Product.wixobj
+obj\Debug\IzendaServiceInstaller.wixproj.BindContentsFileListnull.txt
+obj\Debug\IzendaServiceInstaller.wixproj.BindOutputsFileListnull.txt
+obj\Debug\IzendaServiceInstaller.wixproj.BindBuiltOutputsFileListnull.txt

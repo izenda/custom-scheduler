@@ -1,0 +1,7 @@
+obj\Debug\Product.wixobj
+C:\work\IzendaService\Installer\bin\Debug\cab1.cab
+C:\work\IzendaService\Installer\bin\Debug\Installer.msi
+C:\work\IzendaService\Installer\bin\Debug\Installer.wixpdb
+obj\Debug\Installer.wixproj.BindContentsFileListnull.txt
+obj\Debug\Installer.wixproj.BindOutputsFileListnull.txt
+obj\Debug\Installer.wixproj.BindBuiltOutputsFileListnull.txt

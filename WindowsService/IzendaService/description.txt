@@ -1,0 +1,20 @@
+﻿Production scenario:
+
+1. Download and install http://wixtoolset.org/releases/ toolset
+2. [Re]Open the solution in Visual Studio
+3. Build the solution
+4. IzendaService.msi and cab1.cab - is installer ready to redistribute.
+
+Installation and config csenario:
+1. Launch IzendaService.msi
+2. open console as administrator
+3. run 
+> net stop IzendaService
+or
+stop IzendaService from Administrative Tools -> Servises
+4. Change url and interval (in miliseconds) keys in IzendaService.exe.config as needed
+5. run in the opened as admionistrator console
+> net start IzendaService
+or
+start IzendaService from Administrative Tools -> Servises
+6. IzendaService will request sceduled reporting onece on start and next in every interval you set.

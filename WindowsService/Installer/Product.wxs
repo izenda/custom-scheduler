@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<Product Id="*" Name="IzendaService" Language="1033" Version="1.0.0.0" Manufacturer="Izenda" UpgradeCode="10a48f0e-e353-4220-91a5-d5f881505597">
+		<Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
+
+		<MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+		<MediaTemplate />
+
+		<Directory Id="TARGETDIR" Name="SourceDir">
+			<Directory Id="ProgramFilesFolder">
+				<Directory Id="INSTALLFOLDER" Name="IzendaService" />
+			</Directory>
+		</Directory>
+
+		<ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
+      <Component Id="IzendaService">
+        <File Id="IzendaService.exe" Source="..\..\..\IzendaService\bin\Debug\IzendaService.exe" KeyPath="yes"/>
+        <ServiceInstall Id="Svc" Name="IzendaService" DisplayName="IzendaService" Description="IzendaService" Type="ownProcess" Start="auto" ErrorControl="normal" Vital="yes" />
+        <ServiceControl Id="Svc" Name="IzendaService" Stop="both" Start="install" Remove="uninstall" Wait="yes" />
+      </Component>
+      <Component Id="IzendaConfig">
+        <File Id="IzendaService.exe.config" Source="..\..\..\IzendaService\bin\Debug\IzendaService.exe.config" KeyPath="yes"/>
+      </Component>
+		</ComponentGroup>
+
+    <Feature Id="MainApplication" Title="Main Application" Level="1">
+      <ComponentRef Id="IzendaService" />
+      <ComponentRef Id="IzendaConfig" />
+    </Feature>
+  </Product>
+</Wix>

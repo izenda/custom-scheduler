@@ -1,0 +1,3 @@
+obj\Debug\..\..\..\IzendaService\bin\Debug\IzendaService.exe.config
+obj\Debug\..\..\..\IzendaService\install.bat
+obj\Debug\..\..\..\IzendaService\bin\Debug\IzendaService.exe

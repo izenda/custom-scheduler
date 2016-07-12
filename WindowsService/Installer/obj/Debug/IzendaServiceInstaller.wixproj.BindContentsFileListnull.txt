@@ -1,0 +1,2 @@
+obj\Debug\..\..\..\IzendaService\bin\Debug\IzendaService.exe
+obj\Debug\..\..\..\IzendaService\bin\Debug\IzendaService.exe.config

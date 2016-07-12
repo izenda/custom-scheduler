@@ -1,0 +1,3 @@
+C:\work\IzendaService\Installer\bin\Debug\cab1.cab
+C:\work\IzendaService\Installer\bin\Debug\Installer.msi
+C:\work\IzendaService\Installer\bin\Debug\Installer.wixpdb
