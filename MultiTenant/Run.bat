@@ -1,1 +1,0 @@
-CustomScheduler.exe "URL/RunScheduler.aspx?tenants=1,2"
