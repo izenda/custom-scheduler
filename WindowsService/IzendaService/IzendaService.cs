@@ -5,6 +5,7 @@ using System.Net;
 using System.ServiceProcess;
 using System.Text;
 using System.Timers;
+using System.Configuration;
 
 namespace IzendaService
 {
@@ -25,6 +26,8 @@ namespace IzendaService
 		string tenants = "";
 		string user = "";
 		string pass = "";
+        string izUser = "";
+        string izPassword = "";
 
 		public IzendaService()
 		{
@@ -42,7 +45,7 @@ namespace IzendaService
 				string schedulingLogs = "";
 				using (CustomWebClient client = new CustomWebClient())
 				{
-					if (!String.IsNullOrEmpty(user) && !String.IsNullOrEmpty(pass))
+					if (!string.IsNullOrEmpty(user) && !string.IsNullOrEmpty(pass))
 					{
 						NetworkCredential credentials = new NetworkCredential(user, pass);
 						client.UseDefaultCredentials = false;
@@ -50,7 +53,12 @@ namespace IzendaService
 					}
 					else
 						client.UseDefaultCredentials = true;
-					string url = String.Format("{0}?run_scheduled_reports={1}{2}", rsPath, timePeriod, String.IsNullOrEmpty(tenants) ? "" : ("&tenants=" + tenants));
+					string url = string.Format("{0}?run_scheduled_reports={1}{2}{3}{4}", 
+                        rsPath, 
+                        timePeriod, 
+                        string.IsNullOrEmpty(tenants) ? "" : ("&tenants=" + tenants), 
+                        string.IsNullOrEmpty(izUser) ? "" : "&izUser=" + izUser, 
+                        string.IsNullOrEmpty(izPassword) ? "" : "&izPassword=" + izPassword);
 					Stream networkStream = client.OpenRead(url);
 					using (StreamReader reader = new StreamReader(networkStream))
 						schedulingLogs = reader.ReadToEnd().Replace("<br>", Environment.NewLine).Replace("<br/>", Environment.NewLine);
@@ -68,13 +76,15 @@ namespace IzendaService
 
 		protected override void OnStart(string[] args)
 		{
-			rsPath = (System.Configuration.ConfigurationSettings.AppSettings["responseServerPath"] ?? "").ToString();
-			user = (System.Configuration.ConfigurationSettings.AppSettings["user"] ?? "").ToString();
-			pass = (System.Configuration.ConfigurationSettings.AppSettings["password"] ?? "").ToString();
-			tenants = (System.Configuration.ConfigurationSettings.AppSettings["tenants"] ?? "").ToString();
-			timePeriod = (System.Configuration.ConfigurationSettings.AppSettings["timePeriod"] ?? "1").ToString();
-			int interval = Convert.ToInt32((System.Configuration.ConfigurationSettings.AppSettings["interval"] ?? "-1").ToString());
-			if (String.IsNullOrEmpty(rsPath))
+			rsPath = (ConfigurationManager.AppSettings["responseServerPath"] ?? "").ToString();
+			user = (ConfigurationManager.AppSettings["user"] ?? "").ToString();
+			pass = (ConfigurationManager.AppSettings["password"] ?? "").ToString();
+			tenants = (ConfigurationManager.AppSettings["tenants"] ?? "").ToString();
+			timePeriod = (ConfigurationManager.AppSettings["timePeriod"] ?? "1").ToString();
+            izUser = (ConfigurationManager.AppSettings["izu"] ?? "").ToString();
+            izPassword = (ConfigurationManager.AppSettings["izp"] ?? "").ToString();
+            int interval = Convert.ToInt32((ConfigurationManager.AppSettings["interval"] ?? "-1").ToString());
+			if (string.IsNullOrEmpty(rsPath))
 			{
 				Log("Response server URL is not specified. Attribute name is 'responseServerPath'");
 				return;
