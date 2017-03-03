@@ -26,8 +26,8 @@ namespace IzendaService
 		string tenants = "";
 		string user = "";
 		string pass = "";
-        string izUser = "";
-        string izPassword = "";
+		string izUser = "";
+		string izPassword = "";
 
 		public IzendaService()
 		{
@@ -54,11 +54,11 @@ namespace IzendaService
 					else
 						client.UseDefaultCredentials = true;
 					string url = string.Format("{0}?run_scheduled_reports={1}{2}{3}{4}", 
-                        rsPath, 
-                        timePeriod, 
-                        string.IsNullOrEmpty(tenants) ? "" : ("&tenants=" + tenants), 
-                        string.IsNullOrEmpty(izUser) ? "" : "&izUser=" + izUser, 
-                        string.IsNullOrEmpty(izPassword) ? "" : "&izPassword=" + izPassword);
+						rsPath, 
+						timePeriod, 
+						string.IsNullOrEmpty(tenants) ? "" : ("&tenants=" + tenants), 
+						string.IsNullOrEmpty(izUser) ? "" : "&izUser=" + izUser, 
+						string.IsNullOrEmpty(izPassword) ? "" : "&izPassword=" + izPassword);
 					Stream networkStream = client.OpenRead(url);
 					using (StreamReader reader = new StreamReader(networkStream))
 						schedulingLogs = reader.ReadToEnd().Replace("<br>", Environment.NewLine).Replace("<br/>", Environment.NewLine);
@@ -81,8 +81,8 @@ namespace IzendaService
 			pass = (ConfigurationManager.AppSettings["password"] ?? "").ToString();
 			tenants = (ConfigurationManager.AppSettings["tenants"] ?? "").ToString();
 			timePeriod = (ConfigurationManager.AppSettings["timePeriod"] ?? "1").ToString();
-            izUser = (ConfigurationManager.AppSettings["izu"] ?? "").ToString();
-            izPassword = (ConfigurationManager.AppSettings["izp"] ?? "").ToString();
+			izUser = (ConfigurationManager.AppSettings["izu"] ?? "").ToString();
+			izPassword = (ConfigurationManager.AppSettings["izp"] ?? "").ToString();
             int interval = Convert.ToInt32((ConfigurationManager.AppSettings["interval"] ?? "-1").ToString());
 			if (string.IsNullOrEmpty(rsPath))
 			{
