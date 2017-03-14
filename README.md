@@ -5,7 +5,7 @@ Implementation of a custom report scheduler that will grab a list of active orgs
 1. The service will be customized to query the database every time it runs to ensure we are executing against the currently active clients and institutions.
 2. The list will be appended as a comma delimited list to the url submitted to the webserver reporting page to tell the page for which tenants we want to run reports. The format should look something like this:
 ```
-<host url>/reporting/rs.aspx?run_scheduled_reports=<timePeriod>&tenants=global,<list of returned tenant names>
+<host url>/reporting/rs.aspx?run_scheduled_reports=<timePeriod>&tenants=_global_,<list of returned tenant names>
 ```
 
 Where:
