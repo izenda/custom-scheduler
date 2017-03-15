@@ -24,7 +24,7 @@ When the rp.aspx page is called from the service, the format should look somethi
 Where:
 ```<hosturl>```,```<timePeriod>```, ```<username>``` and ```<password>```are defined in the service config located on the server at **C:\Program Files (x86)\IzendaService\IzendaService.exe.config**
 
-The logical flow diagram for these changes is located at:
+The logical flow diagram for these changes is located at https://github.com/WasteStrategies/custom-scheduler/blob/master/Custom%20ReportScheduler%20LogicalFlow.png
 
 These changes will also require the cusotmization of the Global.aspx page to authenticate as explained in the Izenda Wiki at http://wiki.izenda.us/FAQ/Implementing-Scheduler-Security. The example C# code provided is below:
 ```
@@ -53,3 +53,5 @@ public class CustomAdHocConfig : FileSystemAdHocConfig
     }
 }
 ```
+
+**The AuthenticateSchedulerUser method referenced above will need to be developed to validate the crendentials passed by the scheduler against thse store in the web.config. **
