@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Net;
@@ -6,6 +7,10 @@ using System.ServiceProcess;
 using System.Text;
 using System.Timers;
 using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+using System.Linq;
+using Dapper;
 
 namespace IzendaService
 {
@@ -28,10 +33,17 @@ namespace IzendaService
 		string pass = "";
 		string izUser = "";
 		string izPassword = "";
+        List<string> tentantsList =new List<string>();
 
-		public IzendaService()
+
+        public IzendaService()
 		{
-			InitializeComponent();
+            IDbConnection _db = new SqlConnection(ConfigurationManager.ConnectionStrings["WasteStrategies"].ConnectionString);
+
+            tentantsList = _db.Query<string>("select name from [ActiveTenants]").ToList();
+            tenants = "_global_," + String.Join(",", tentantsList);
+
+            InitializeComponent();
 		}
 
 		private Timer timer;
@@ -59,7 +71,9 @@ namespace IzendaService
 						string.IsNullOrEmpty(tenants) ? "" : ("&tenants=" + tenants), 
 						string.IsNullOrEmpty(izUser) ? "" : "&izUser=" + izUser, 
 						string.IsNullOrEmpty(izPassword) ? "" : "&izPassword=" + izPassword);
-					Stream networkStream = client.OpenRead(url);
+
+                    Stream networkStream = client.OpenRead(url);
+
 					using (StreamReader reader = new StreamReader(networkStream))
 						schedulingLogs = reader.ReadToEnd().Replace("<br>", Environment.NewLine).Replace("<br/>", Environment.NewLine);
 					networkStream.Close();
@@ -76,10 +90,11 @@ namespace IzendaService
 
 		protected override void OnStart(string[] args)
 		{
-			rsPath = (ConfigurationManager.AppSettings["responseServerPath"] ?? "").ToString();
+		    
+
+            rsPath = (ConfigurationManager.AppSettings["responseServerPath"] ?? "").ToString();
 			user = (ConfigurationManager.AppSettings["user"] ?? "").ToString();
 			pass = (ConfigurationManager.AppSettings["password"] ?? "").ToString();
-			tenants = (ConfigurationManager.AppSettings["tenants"] ?? "").ToString();
 			timePeriod = (ConfigurationManager.AppSettings["timePeriod"] ?? "1").ToString();
 			izUser = (ConfigurationManager.AppSettings["izu"] ?? "").ToString();
 			izPassword = (ConfigurationManager.AppSettings["izp"] ?? "").ToString();
