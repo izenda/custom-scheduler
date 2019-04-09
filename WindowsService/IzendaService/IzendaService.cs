@@ -41,8 +41,9 @@ namespace IzendaService
             IDbConnection _db = new SqlConnection(ConfigurationManager.ConnectionStrings["WasteStrategies"].ConnectionString);
 
             tentantsList = _db.Query<string>("select name from [ActiveTenants]").ToList();
-            tenants = "_global_," + String.Join(",", tentantsList);
-
+            tentantsList.Add("_global_");
+            Log("Tenants:" + string.Join("|",tentantsList));
+        
             InitializeComponent();
 		}
 
@@ -65,33 +66,41 @@ namespace IzendaService
 					}
 					else
 						client.UseDefaultCredentials = true;
-					string url = string.Format("{0}?run_scheduled_reports={1}{2}{3}{4}", 
-						rsPath, 
-						timePeriod, 
-						string.IsNullOrEmpty(tenants) ? "" : ("&tenants=" + tenants), 
-						string.IsNullOrEmpty(izUser) ? "" : "&izUser=" + izUser, 
-						string.IsNullOrEmpty(izPassword) ? "" : "&izPassword=" + izPassword);
 
-                    Stream networkStream = client.OpenRead(url);
+                    for (int i = 0; i < tentantsList.Count; i += 5)
+                    {
+                        var tenantsToUse = tentantsList.Skip(i).Take(5);
 
-					using (StreamReader reader = new StreamReader(networkStream))
-						schedulingLogs = reader.ReadToEnd().Replace("<br>", Environment.NewLine).Replace("<br/>", Environment.NewLine);
-					networkStream.Close();
+                        tenants = string.Join(",", tenantsToUse);
+                        string url = string.Format("{0}?run_scheduled_reports={1}{2}{3}{4}",
+                            rsPath,
+                            timePeriod,
+                            string.IsNullOrEmpty(tenants) ? "" : ("&tenants=" + tenants),
+                            string.IsNullOrEmpty(izUser) ? "" : "&izUser=" + izUser,
+                            string.IsNullOrEmpty(izPassword) ? "" : "&izPassword=" + izPassword);
+
+                        Log("URL: " + url);
+
+                        Stream networkStream = client.OpenRead(url);
+
+                        using (StreamReader reader = new StreamReader(networkStream))
+                            schedulingLogs = reader.ReadToEnd().Replace("<br>", Environment.NewLine).Replace("<br/>", Environment.NewLine);
+
+
+                        Log($"Scheduling operation succeeded. Log which can be parsed: {schedulingLogs} for tenants: {tenants}");
+                        networkStream.Close();
+                    }
 				}
-				executeResult = "Scheduling operation succeeded. Log which can be parsed: " + schedulingLogs;
 			}
 			catch (Exception e)
 			{
-				executeResult = "Scheduling operation failed: " + e.Message;
+				Log("Scheduling operation failed: " + e.Message);
 			}
-			Log(executeResult);
 			timer.Start();
 		}
 
 		protected override void OnStart(string[] args)
 		{
-		    
-
             rsPath = (ConfigurationManager.AppSettings["responseServerPath"] ?? "").ToString();
 			user = (ConfigurationManager.AppSettings["user"] ?? "").ToString();
 			pass = (ConfigurationManager.AppSettings["password"] ?? "").ToString();
@@ -109,6 +118,8 @@ namespace IzendaService
 				Log("Time interval between scheduler runs is not specified. Attribute name is 'interval'");
 				return;
 			}
+
+            Log($"Startup Items: rsPath: {rsPath} | user: {user} | pass: {pass} | timePeriod: {timePeriod} | izUser: {izUser} | izPassword: {izPassword} | interval: {interval}");
 			timer = new Timer(interval);
 			timer.Elapsed += RunScheduledReports;
 			RunScheduledReports(null, null);

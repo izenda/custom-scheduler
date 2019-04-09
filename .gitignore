@@ -1,0 +1,12 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs
+/WindowsService/.vs/IzendaService/v15
+/WindowsService/packages/Dapper.1.50.5
+*.htm
+/WindowsService/IzendaService/bin/Debug/Dapper.dll
+/WindowsService/IzendaService/bin/Debug/Dapper.xml
+/WindowsService/IzendaService/bin/Release
+/WindowsService/IzendaService/obj/Release
